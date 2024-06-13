@@ -39,8 +39,8 @@ Route::prefix('/mahasiswa')->group(function () {
     Route::post('/api_tambah/', [AbdulRohmanMasrifan1462200195MahasiswaController::class, 'tambahData'])->name('mahasiswa.api_tambah');
     Route::post('/api_ubah/', [AbdulRohmanMasrifan1462200195MahasiswaController::class, 'ubahData'])->name('mahasiswa.api_ubah');
     Route::delete('/api_hapus/{mhs_id}', [AbdulRohmanMasrifan1462200195MahasiswaController::class, 'hapusData'])->name('mahasiswa.api_hapus');
-    Route::get('/api_cetak-pdf', [AbdulRohmanMasrifan1462200195MahasiswaController::class, 'cetakDataPdf'])->name('mahasiswa.api_cetak_pdf');
-    Route::get('/api_cetak-excel', [AbdulRohmanMasrifan1462200195MahasiswaController::class, 'cetakDataExcel'])->name('mahasiswa.api_cetak_excel');
+    Route::get('/api_cetak_pdf', [AbdulRohmanMasrifan1462200195MahasiswaController::class, 'cetakDataPdf'])->name('mahasiswa.api_cetak_pdf');
+    Route::get('/api_cetak_excel', [AbdulRohmanMasrifan1462200195MahasiswaController::class, 'cetakDataExcel'])->name('mahasiswa.api_cetak_excel');
 });
 
 
