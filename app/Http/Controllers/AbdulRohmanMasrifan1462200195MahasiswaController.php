@@ -21,7 +21,7 @@ class AbdulRohmanMasrifan1462200195MahasiswaController extends Controller
     {
         $data_mahasiswa = AbdulRohmanMasrifan1462200195MahasiswaModel::findOrFail($mhs_id);
 
-        return view('pages.mahasiswa.form_isian_mahasiswa', compact('data_mahasiswa'));
+        return view('pages.mahasiswa.form_ubah_mahasiswa', compact('data_mahasiswa'));
     }
 
     public function index()
@@ -60,31 +60,8 @@ class AbdulRohmanMasrifan1462200195MahasiswaController extends Controller
         $mahasiswa = new AbdulRohmanMasrifan1462200195MahasiswaModel();
 
         // Set nilai-niali properti berdasarkan input form
-        $mahasiswa->mhs_prodi_id = $request->mhs_prodi_id;
-        $mahasiswa->mhs_nbi = $request->mhs_nbi;
-        $mahasiswa->mhs_nama = $request->mhs_nama;
-        $mahasiswa->mhs_tgl_lahir = $request->mhs_tgl_lahir;
-        $mahasiswa->mhs_jenis_kelamin = $request->mhs_jenis_kelamin;
-        $mahasiswa->mhs_no_hp = $request->mhs_no_hp;
-        $mahasiswa->mhs_alamat = $request->mhs_alamat;
-        $mahasiswa->mhs_pembimbing_id = $request->mhs_pembimbing_id;
-
-        // Simpan gambar ke direktori public gambar
-        if ($request->hasFile('mhs_foto_path')) {
-            // Ambil nama file gambar
-            $image = $request->file('mhs_foto_path');
-            $imageName = $image->getClientOriginalName();
-
-            // Buat direktori jika belum ada
-            $directory = public_path('uploads/mahasiswa/'.$request->mhs_nbi);
-            if (!file_exists($directory)) {
-                mkdir($directory, 0777, true);
-            }
-
-            // Pindahkan gambar ke direktori yang baru dibuat
-            $image->move($directory, $imageName);
-            $mahasiswa->mhs_foto_path = 'uploads/mahasiswa/'.$request->mhs_nbi.'/'.$imageName; // Simpan path gambar ke database
-        }
+        $mahasiswa->mahasiswa_nama = $request->mahasiswa_nama;
+        $mahasiswa->mahasiswa_nbi = $request->mahasiswa_nbi;
 
         // Simpan data ke database
         $mahasiswa->save();
@@ -99,33 +76,10 @@ class AbdulRohmanMasrifan1462200195MahasiswaController extends Controller
     public function ubahData(Request $request)
     {
 
-        $updated_mahasiswa = AbdulRohmanMasrifan1462200195MahasiswaModel::findOrFail($request->mhs_id);
+        $updated_mahasiswa = AbdulRohmanMasrifan1462200195MahasiswaModel::findOrFail($request->mahasiswa_id);
 
-        $updated_mahasiswa->mhs_prodi_id = $request->mhs_prodi_id;
-        $updated_mahasiswa->mhs_nbi = $request->mhs_nbi;
-        $updated_mahasiswa->mhs_nama = $request->mhs_nama;
-        $updated_mahasiswa->mhs_tgl_lahir = $request->mhs_tgl_lahir;
-        $updated_mahasiswa->mhs_jenis_kelamin = $request->mhs_jenis_kelamin;
-        $updated_mahasiswa->mhs_no_hp = $request->mhs_no_hp;
-        $updated_mahasiswa->mhs_alamat = $request->mhs_alamat;
-        $updated_mahasiswa->mhs_pembimbing_id = $request->mhs_pembimbing_id;
-
-        // Simpan gambar ke direktori public gambar
-        if ($request->hasFile('mhs_foto_path')) {
-            // Ambil nama file gambar
-            $image = $request->file('mhs_foto_path');
-            $imageName = $image->getClientOriginalName();
-
-            // Buat direktori jika belum ada
-            $directory = public_path('uploads/mahasiswa/'.$request->mhs_nbi);
-            if (!file_exists($directory)) {
-                mkdir($directory, 0777, true);
-            }
-
-            // Pindahkan gambar ke direktori yang baru dibuat
-            $image->move($directory, $imageName);
-            $updated_mahasiswa->mhs_foto_path = 'uploads/mahasiswa/'.$request->mhs_nbi.'/'.$imageName; // Simpan path gambar ke database
-        }
+        $updated_mahasiswa->mahasiswa_nama = $request->mahasiswa_nama;
+        $updated_mahasiswa->mahasiswa_nbi = $request->mahasiswa_nbi;
 
         $updated_mahasiswa->save();
 
@@ -136,9 +90,9 @@ class AbdulRohmanMasrifan1462200195MahasiswaController extends Controller
         return redirect()->route('mahasiswa');
     }
 
-    public function hapusData($mhs_id)
+    public function hapusData($mahasiswa_id)
     {
-        $mahasiswa = AbdulRohmanMasrifan1462200195MahasiswaModel::findOrFail($mhs_id);
+        $mahasiswa = AbdulRohmanMasrifan1462200195MahasiswaModel::findOrFail($mahasiswa_id);
         $mahasiswa->delete();
 
         Session::flash('delete_mhs', 'Data Mahasiswa Berhasil Dihapus');

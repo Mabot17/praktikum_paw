@@ -1,25 +1,25 @@
 @extends('layout.main_layout')
 
 @section('content')
-
+    @include('pages.mahasiswa.alert_mahasiswa')
     <div class="card">
         <div class="card-body">
             <div class="d-flex flex-wrap align-items-center justify-content-between breadcrumb-content">
-                <h3>Daftar Mahasiswa</h3>
+                <h4>Daftar Mahasiswa</h4>
                 <div class="d-flex flex-wrap align-items-center">
                     @csrf
                     <div class="btn-group mr-3" role="group">
-                        <button id="btnGroupDrop1"  type="button" class="btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown"
+                        <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                            <i class="ri-printer-cloud-fill"></i>Cetak Data
-                            <i class="ri-arrow-down-fill"></i>
+                            <i class="fas fa-print"></i> Cetak Data
+                            <i class="fas fa-arrow-down"></i>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item" href="{{ route('mahasiswa.api-cetak-pdf') }}"><i class="ri-file-pdf-fill mr-1"></i>Format PDF</a>
-                            <a class="dropdown-item" href="{{ route('mahasiswa.api-cetak-excel') }}"><i class="ri-file-excel-2-fill mr-1"></i>Format Excel</a>
+                            <a class="dropdown-item" href="{{ route('mahasiswa.api_cetak_pdf') }}"><i class="fas fa-file-pdf"></i> Format PDF</a>
+                            <a class="dropdown-item" href="{{ route('mahasiswa.api_cetak_excel') }}"><i class="fas fa-file-excel"></i> Format Excel</a>
                         </div>
                     </div>
-                    <a type="button"  href="{{ route('mahasiswa.tambah') }}" class="btn btn-sm btn-primary"><i class="ri-user-add-fill"></i>Tambah Data</a>
+                    <a type="button" href="{{ route('mahasiswa.tambah') }}" class="btn btn-sm btn-primary"><i class="fas fa-user-plus"></i> Tambah Data</a>
                 </div>
             </div>
         </div>
@@ -48,9 +48,15 @@
                             {{-- <td>{{ $value->created_by }}</td>
                             <td>{{ $value->updated_by }}</td> --}}
                             <td>
-                                <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#previewModal{{$value->mahasiswa_id}}">Preview</a>
-                                {{-- <a href="{{ route('mahasiswa.edit', ['mahasiswa_id' => $value->mahasiswa_id]) }}" class="btn btn-primary btn-sm">Edit</a> --}}
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{$value->mahasiswa_id}}">Delete</button>
+                                <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#previewModal{{$value->mahasiswa_id}}">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="{{ url('mahasiswa/ubah/'.$value->mahasiswa_id) }}" class="btn btn-sm btn-success mr-1" style="text-align: center!important">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{$value->mahasiswa_id}}">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
                             </td>
                         </tr>
                         @endforeach

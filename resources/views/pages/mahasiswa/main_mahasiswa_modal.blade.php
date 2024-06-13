@@ -39,9 +39,12 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    {{-- <form action="{{ route('mahasiswa.softDelete', ['mahasiswa_id' => $value->mahasiswa_id]) }}" method="POST" class="d-inline"> --}}
+                    <form action="{{ route('mahasiswa.api_hapus', ['mhs_id' => $value->mahasiswa_id]) }}" method="POST" class="d-inline">
                         @csrf
-                        <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                        @method('DELETE') {{-- Pastikan untuk menambahkan metode DELETE --}}
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash-alt"></i> Ya, Hapus
+                        </button>
                     </form>
                 </div>
             </div>
