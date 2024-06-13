@@ -41,19 +41,6 @@ class AbdulRohmanMasrifan1462200195MahasiswaController extends Controller
         return view('pages.mahasiswa.main_mahasiswa', compact('mahasiswa'));
     }
 
-    public function show($id)
-    {
-        // Mengambil data mahasiswa berdasarkan ID
-        $mahasiswa = AbdulRohmanMasrifan1462200195MahasiswaModel::findOrFail($id);
-
-        // Pastikan mahasiswa tidak terhapus (jika menggunakan soft delete)
-        if ($mahasiswa->trashed()) {
-            abort(404); // Atau tampilkan halaman 404 jika sudah terhapus
-        }
-
-        return view('mahasiswa', compact('mahasiswa'));
-    }
-
     public function tambahData(Request $request)
     {
         // Buat entri baru tanpa validasi
@@ -97,43 +84,6 @@ class AbdulRohmanMasrifan1462200195MahasiswaController extends Controller
 
         Session::flash('delete_mhs', 'Data Mahasiswa Berhasil Dihapus');
         return redirect()->route('mahasiswa');
-    }
-
-    public function getLastNbiByProdiId($prodiId)
-    {
-        // Cari NBI terakhir berdasarkan prodi_id
-        $lastNbi = AbdulRohmanMasrifan1462200195MahasiswaModel::where('mhs_prodi_id', $prodiId)
-            ->orderBy('mhs_nbi', 'desc')
-            ->pluck('mhs_nbi')
-            ->first();
-
-        // Jika NBI terakhir tidak ditemukan
-        if (!$lastNbi) {
-            // Ambil prodi_kode berdasarkan prodi_id
-            $prodiKode = ProdiModel::where('prodi_id', $prodiId)->value('prodi_kode');
-
-            // Ambil tahun sekarang
-            $tahun = date('y');
-
-            // Format NBI sesuai prodi_kode + tahun + 00001
-            $newNbi = $prodiKode . $tahun . '00001';
-        } else {
-            // Dapatkan nomor urut dari NBI terakhir
-            $lastNbiNumber = substr($lastNbi, -5);
-
-            // Jika nomor urut melebihi 99999, kembalikan NBI terakhir
-            if ($lastNbiNumber >= 99999) {
-                return response()->json(['lastNbi' => $lastNbi]);
-            }
-
-            // Tambahkan 1 pada nomor urut
-            $newNbiNumber = str_pad($lastNbiNumber + 1, 5, '0', STR_PAD_LEFT);
-
-            // Format NBI baru dengan nomor urut yang telah ditambahkan
-            $newNbi = substr_replace($lastNbi, $newNbiNumber, -5);
-        }
-
-        return response()->json(['lastNbi' => $newNbi]);
     }
 
     public function cetakDataPDF() {

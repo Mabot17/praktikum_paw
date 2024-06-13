@@ -14,8 +14,8 @@
     <hr class="sidebar-divider">
 
     <!-- Nav Item - Pengunjung -->
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url('home') }}" class="{{ Request::is('home') ? 'active' : '' }}">
+    <li class="nav-item {{ Request::path() === '/' || Request::segment(1) === 'home' ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('home') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>Home</span>
         </a>
@@ -24,15 +24,15 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url('mahasiswa') }}" class="{{ Request::is('mahasiswa') ? 'active' : '' }}">
+    <li class="nav-item {{ Request::segment(1) === 'mahasiswa' ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('mahasiswa') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>Mahasiswa</span>
         </a>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url('teater') }}" class="{{ Request::is('teater') ? 'active' : '' }}">
+    <li class="nav-item {{ Request::segment(1) === 'teater' ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('teater') }}">
             <i class="fas fa-fw fa-mountain"></i>
             <span>Teater</span>
         </a>

@@ -7,7 +7,9 @@
             <div class="d-flex flex-wrap align-items-center justify-content-between breadcrumb-content">
                 <h4>Tambah Data Mahasiswa</h4>
                 <div class="d-flex flex-wrap align-items-center">
-                    <a type="button"  href="{{ route('mahasiswa') }}" class="btn btn-sm btn-warning"><i class="ri-user-add-fill"></i>Kembali</a>
+                    <a type="button"  href="{{ route('mahasiswa') }}" class="btn btn-sm btn-warning">
+                        <i class="fas fa-arrow-left"></i> Kembali
+                    </a>
                 </div>
             </div>
         </div>
