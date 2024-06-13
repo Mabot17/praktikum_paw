@@ -28,7 +28,6 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
-            @include('auth.message')
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -36,8 +35,6 @@
                             <th>Nama</th>
                             <th>Judul</th>
                             <th>Foto</th>
-                            {{-- <th>Dibuat Oleh</th>
-                            <th>Diperbarui Oleh</th> --}}
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -49,8 +46,6 @@
                             <td>
                                 <img src="{{ asset($value->teater_foto_path) }}" alt="Foto Teater" style="width: 100px; height: auto;">
                             </td>
-                            {{-- <td>{{ $value->created_by }}</td>
-                            <td>{{ $value->updated_by }}</td> --}}
                             <td>
                                 <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#previewModal{{$value->teater_id}}">
                                     <i class="fas fa-eye"></i>
