@@ -9,10 +9,7 @@ class AbdulRohmanMasrifan1462200195HomeController extends Controller
 {
     public function index()
     {
-        // Mengambil semua data mahasiswa dari database dengan paginasi
-        $mahasiswa = AbdulRohmanMasrifan1462200195HomeModel::all();
-
         // Mengembalikan view 'index' dengan data mahasiswa
-        return view('pages.mahasiswa.main_mahasiswa', ['mahasiswa' => $mahasiswa]);
+        return view('pages.home.main_home');
     }
 }

@@ -24,7 +24,13 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Nav Item - Wisata -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('mahasiswa') }}" class="{{ Request::is('mahasiswa') ? 'active' : '' }}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Mahasiswa</span>
+        </a>
+    </li>
+
     <li class="nav-item">
         <a class="nav-link" href="{{ url('teater') }}" class="{{ Request::is('teater') ? 'active' : '' }}">
             <i class="fas fa-fw fa-mountain"></i>

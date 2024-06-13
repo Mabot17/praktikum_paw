@@ -1,17 +1,32 @@
 @extends('layout.main_layout')
 
 @section('content')
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Table Mahasiswa</h1>
 
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Table Mahasiswa Detail</h6>
-            <div class="d-flex justify-content-end">
-                {{-- <a href="{{ route('mahasiswa.create') }}" class="btn btn-primary">Tambah Mahasiswa</a> --}}
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex flex-wrap align-items-center justify-content-between breadcrumb-content">
+                <h3>Daftar Mahasiswa</h3>
+                <div class="d-flex flex-wrap align-items-center">
+                    @csrf
+                    <div class="btn-group mr-3" role="group">
+                        <button id="btnGroupDrop1"  type="button" class="btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="ri-printer-cloud-fill"></i>Cetak Data
+                            <i class="ri-arrow-down-fill"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href="{{ route('mahasiswa.api-cetak-pdf') }}"><i class="ri-file-pdf-fill mr-1"></i>Format PDF</a>
+                            <a class="dropdown-item" href="{{ route('mahasiswa.api-cetak-excel') }}"><i class="ri-file-excel-2-fill mr-1"></i>Format Excel</a>
+                        </div>
+                    </div>
+                    <a type="button"  href="{{ route('mahasiswa.tambah') }}" class="btn btn-sm btn-primary"><i class="ri-user-add-fill"></i>Tambah Data</a>
+                </div>
             </div>
         </div>
+    </div>
+    <hr class="divider">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
         <div class="card-body">
             @include('auth.message')
             <div class="table-responsive">
