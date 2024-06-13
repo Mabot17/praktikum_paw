@@ -1,9 +1,27 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AbdulRohmanMasrifan_1462200195Controller;
+use App\Http\Controllers\AbdulRohmanMasrifan1462200195HomeController;
+use App\Http\Controllers\AbdulRohmanMasrifan1462200195TeaterController;
 
-Route::get('/', [AbdulRohmanMasrifan_1462200195Controller::class, 'main_page'])->name('main_page');
-Route::get('/home', [AbdulRohmanMasrifan_1462200195Controller::class, 'home_page'])->name('home_page');
-Route::get('/cartoon', [AbdulRohmanMasrifan_1462200195Controller::class, 'cartoon_page'])->name('cartoon_page');
-Route::get('/about_me', [AbdulRohmanMasrifan_1462200195Controller::class, 'aboutme_page'])->name('aboutme_page');
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('layout.main_layout');
+});
+
+// Route untuk halaman dashboard admin
+Route::get('home', [AbdulRohmanMasrifan1462200195HomeController::class, 'index'])->name('home');
+Route::get('teater', [AbdulRohmanMasrifan1462200195TeaterController::class, 'index'])->name('teater');
+
+
